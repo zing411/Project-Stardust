@@ -4,5 +4,5 @@ ac_temp=$(printf "%s" $ac_i | cut -c 7)ithub_pat_11A3V367Y0skmk8Wbw3gLx_fRrLfmnq
 git pull
 git add .
 git commit -m update
-git push https://$ac_temp@github.com/zing411/Project-Stardus
+git push https://$ac_temp@github.com/zing411/Project-Stardust
 git pull

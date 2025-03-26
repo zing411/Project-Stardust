@@ -14,4 +14,9 @@ public class gameControllers {
         return "home";
     }
 
+    @GetMapping("/store")
+    public String store(){
+        return "store";
+    }
+
 }

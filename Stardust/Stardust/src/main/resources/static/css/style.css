@@ -1,0 +1,76 @@
+:root {
+    --base-color: white;
+    --base-variant: #e8e9ed;
+    --text-color: #111528;
+    --secondary-text: #232738;
+    --primary-color: #525252;
+    --accent-color: #0E86D4;
+}
+
+.darkmode {
+    --base-color: #2E2E2E;
+    --base-variant: #101425;
+    --text-color: #ffffff;
+    --secondary-text: #a4a5b8;
+    --primary-color: #525252;
+    --accent-color: #0E86D4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Courier New", sans-serif;
+    background-color: var(--base-color);
+    color: var(--text-color);
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--base-variant);
+    padding: 10px;
+}
+
+h1, h2, h3 {
+    color: var(--accent-color);
+}
+
+p {
+    color: var(--text-color);
+}
+
+.featured, .news {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--base-variant);
+    border-radius: 10px;
+}
+
+.game-card {
+    display: inline-block;
+    width: 45%;
+    background-color: var(--secondary-text);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    color: white;
+}
+
+.game-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--primary-color);
+    color: white;
+}

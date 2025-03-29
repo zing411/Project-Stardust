@@ -1,3 +1,6 @@
+/* =========================
+   Root Variables & Dark Mode Overrides
+   ========================= */
 :root {
     --base-color: white;
     --base-variant: #e8e9ed;
@@ -16,6 +19,9 @@
     --accent-color: #0E86D4;
 }
 
+/* =========================
+   Global Styles
+   ========================= */
 * {
     margin: 0;
     padding: 0;
@@ -27,6 +33,7 @@ body {
     background-color: var(--base-color);
     color: var(--text-color);
     padding: 20px;
+    min-height: 100vh;
 }
 
 header {
@@ -45,6 +52,9 @@ p {
     color: var(--text-color);
 }
 
+/* =========================
+   Section Styles (Featured, News, Game Cards)
+   ========================= */
 .featured, .news {
     margin-top: 20px;
     padding: 15px;
@@ -67,10 +77,148 @@ p {
     border-radius: 10px;
 }
 
+/* =========================
+   Footer Styles
+   ========================= */
 footer {
     margin-top: 20px;
     text-align: center;
     padding: 10px;
     background-color: var(--primary-color);
     color: white;
+}
+
+/* =========================
+   Comment Section Styles
+   ========================= */
+.container {
+    background-color: var(--base-variant);
+    padding: 20px;
+    width: 500px;
+    box-shadow: 0 0 5px #000;
+    margin-top: 20px;
+}
+
+.head {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.text {
+    margin: 10px 0;
+    font-family: sans-serif;
+    font-size: 0.9em;
+}
+
+.commentbox {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+/* If you use an image in the comment box, ensure it has proper sizing */
+.commentbox > img,
+.commentbox svg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.content {
+    width: 100%;
+}
+
+.user {
+    border: none;
+    outline: none;
+    color: #808080;
+    margin: 5px 0 5px 20px;
+    padding: 10px;
+}
+
+.commentinput > input {
+    border: none;
+    padding: 10px 0;
+    outline: none;
+    border-bottom: 2px solid blue;
+    margin-bottom: 10px;
+    width: 95%;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #808080;
+}
+
+.buttons button {
+    padding: 5px 10px;
+    background: lightgray;
+    color: #808080;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* When the publish button is active */
+.buttons button.abled {
+    background: #0E86D4;
+    color: #ffffff;
+}
+
+.notify {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.notify > input {
+    margin-right: 5px;
+}
+
+/* Styles for each published comment */
+.parents {
+    display: flex;
+    margin-bottom: 30px;
+    font-family: "Courier New", sans-serif;
+}
+
+.parents > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.parents h1 {
+    font-size: 0.9em;
+}
+
+.parents p {
+    margin: 10px 0;
+    font-size: 0.9em;
+}
+
+.engagements {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.engagements svg {
+    width: 25px;
+    margin-right: 10px;
+}
+
+.date {
+    color: #525252;
+    font-size: 0.8em;
 }

@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Store Page</title>
+    <title>Game Store</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <h1>This the store page</h1>
+<h1>Games</h1>
 
-    <h5>Put the list of games in a table here</h5>
+<!-- Search form for filtering games by title -->
+<form th:action="@{/stardust/store}" method="get">
+    <input type="text" name="search" th:value="${search}" placeholder="Search games...">
+    <button type="submit">Search</button>
+</form>
+
+<!-- Table to display game details -->
+<table>
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Price</th>
+        <th>Rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through each game and display its properties -->
+    <tr th:each="game : ${games}">
+        <td th:text="${game.title}">Title</td>
+        <td th:text="${game.genre}">Genre</td>
+        <td th:text="${game.price}">Price</td>
+        <td th:text="${game.rating}">Rating</td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Pagination links -->
+<div>
+    <!-- Generate page numbers using Thymeleaf sequence function -->
+    <span th:each="i : ${#numbers.sequence(0, totalPages - 1)}">
+            <a th:href="@{/stardust/store(page=${i}, search=${search})}"
+               th:text="${i + 1}"
+               th:classappend="${i} == ${currentPage} ? 'active' : ''">1</a>
+        </span>
+</div>
 </body>
 </html>

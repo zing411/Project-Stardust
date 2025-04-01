@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public class ExternalGameRepository {
-    private static final String API_URL = "https://api.example.com/games";// replace with our actual api fetches from games api
+    private static final String API_URL = "https://www.freetogame.com/api/games\n";// replace with our actual api fetches from games api
 
     private final RestTemplate restTemplate;
 

@@ -52,9 +52,7 @@ public class gameControllers {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("search", search);
-
-
-
+        
         return "store";
     }
 

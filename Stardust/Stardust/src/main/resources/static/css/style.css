@@ -36,22 +36,6 @@ body {
     min-height: 100vh;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--base-variant);
-    padding: 10px;
-}
-
-h1, h2, h3 {
-    color: var(--accent-color);
-}
-
-p {
-    color: var(--text-color);
-}
-
 /* =========================
    Section Styles (Featured, News, Game Cards)
    ========================= */
@@ -116,7 +100,7 @@ footer {
     padding: 10px;
 }
 
-/* If you use an image in the comment box, ensure it has proper sizing */
+/* Support both images and SVG icons for the comment box */
 .commentbox > img,
 .commentbox svg {
     width: 40px;
@@ -221,4 +205,14 @@ footer {
 .date {
     color: #525252;
     font-size: 0.8em;
+}
+
+/* =========================
+   Dark Mode Button (Header) Styles
+   ========================= */
+/* These styles ensure the light/dark mode toggle button remains unaffected */
+#theme_switch {
+    background: none;
+    border: none;
+    cursor: pointer;
 }

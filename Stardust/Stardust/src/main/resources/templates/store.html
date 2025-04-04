@@ -22,15 +22,19 @@
         <button type="submit">Search</button>
     </form>
 
-    <!-- New grid container for game cards -->
+    <!-- grid container for game cards -->
     <div class="game-container">
         <div class="game-card" th:each="game : ${games}">
             <!-- Uncomment and adjust the image source if needed -->
-            <!-- <img th:src="${game.imageUrl}" alt="Game Cover"> -->
+             <img th:src="${game.thumbnail}" alt="Game Cover">
             <div class="game-info">
                 <h3 th:text="${game.title}">Game Title</h3>
                 <p><strong>Genre:</strong> <span th:text="${game.genre}"></span></p>
                 <p><strong>Price:</strong> $<span th:text="${game.price}"></span></p>
+                <p><strong>Description:</strong> <span th:text="${game.short_description}"></span></p>
+                <p><strong>Developer:</strong> <span th:text="${game.developer}"></span></p>
+                <p><strong>Publisher:</strong> <span th:text="${game.publisher}"></span></p>
+                <p><strong>Release Date:</strong> <span th:text="${game.release_date}"></span></p>
                 <p><strong>Rating:</strong> <span th:text="${game.rating}"></span>/10</p>
                 <button class="add-to-cart">Check out the game!</button>
             </div>

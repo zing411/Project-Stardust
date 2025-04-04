@@ -12,5 +12,9 @@ public class Games {
     private String genre;
     private double price;
     private double rating;
-
+    private String short_description;
+    private String thumbnail;
+    private String developer;
+    private String release_date;
+    private String publisher;
 }

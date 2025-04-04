@@ -18,15 +18,15 @@
     <!-- Featured Games Section -->
     <section class="featured">
         <h2>Featured Games</h2>
-        <div class="game-card">
-            <img src="game1.jpg" alt="Game 1">
-            <h3>Game Title 1</h3>
-            <p>Experience the thrill of adventure.</p>
-        </div>
-        <div class="game-card">
-            <img src="game2.jpg" alt="Game 2">
-            <h3>Game Title 2</h3>
-            <p>Immerse yourself in a vast open world.</p>
+        <!-- Loop through the featured games -->
+        <div class="game-card" th:each="game : ${games}">
+            <!-- Use Thymeleaf to resolve the image URL -->
+            <img th:src="@{${game.thumbnail}}" alt="Game Cover">
+            <h3 th:text="${game.title}">Game Title</h3>
+            <p>
+                <strong>Description:</strong>
+                <span th:text="${game.short_description}"></span>
+            </p>
         </div>
     </section>
 

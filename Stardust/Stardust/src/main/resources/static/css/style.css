@@ -46,19 +46,28 @@ body {
     border-radius: 10px;
 }
 
+.game-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px; /* Spacing between cards */
+    margin-top: 20px;
+}
+
 .game-card {
-    display: inline-block;
-    width: 45%;
     background-color: var(--secondary-text);
     padding: 10px;
-    margin: 10px;
     border-radius: 10px;
     color: white;
+    text-align: center;
 }
 
 .game-card img {
     width: 100%;
     border-radius: 10px;
+}
+
+.container {
+    display: grid;
 }
 
 /* =========================

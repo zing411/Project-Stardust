@@ -39,7 +39,7 @@ public class gameControllers {
     public String store(
             @RequestParam(defaultValue = "") String search,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size,
+            @RequestParam(defaultValue = "9") int size,
             Model model
     ){
         // Retrieve filtered and paginated list of games.

@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 public class Games {
     private String title;
     private String genre;
-    private double price;
     private double rating;
     private String short_description;
     private String thumbnail;

@@ -43,7 +43,7 @@
         </article>
     </section>
 
-    <!-- Comment Section on Home Page -->
+    <!-- Comment Section -->
     <div class="container">
         <div class="head">Post a Comment</div>
         <div><span id="comment">0</span> Comments</div>
@@ -53,18 +53,21 @@
         <!-- Comments will be appended here -->
         <div class="comments"></div>
         <div class="commentbox">
-            <!-- Using an SVG icon instead of an image for the user (replace with an image if preferred) -->
+            <!-- Using an SVG icon instead of an image for the user (you can replace this with an image if preferred) -->
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
                 <path d="M480.16-502Q395-502 336.5-561T278-704.5q0-84.5 58.34-142.5t143.5-58q85.16 0 143.66 57.89T682-704q0 84-58.34 143t-143.5 59ZM114-86v-159q0-46.77 23.79-84.47Q161.58-367.16 201-387q66-34 136.17-51 70.18-17 142.55-17Q554-455 624-438t135 50q39.42 19.69 63.21 57.11T846-245.05V-86H114Z"/>
             </svg>
             <div class="content">
                 <h2>Comment as: </h2>
                 <label>
+                    <!-- Default username set to Anonymous -->
                     <input type="text" value="Anonymous" class="user">
                 </label>
                 <div class="commentinput">
+                    <!-- Comment input field with a unique ID -->
                     <input type="text" id="userComment" placeholder="Enter comment" class="comment">
                     <div class="buttons">
+                        <!-- Publish button starts disabled -->
                         <button type="submit" disabled id="publish">Publish</button>
                         <div class="notify">
                             <label>
@@ -77,7 +80,6 @@
             </div>
         </div>
     </div>
-
 </main>
 
 <footer>

@@ -99,3 +99,40 @@ document.addEventListener("DOMContentLoaded", function () {
     // Listen for clicks on the Publish button to add the comment
     publishBtn.addEventListener("click", addPost);
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    // ===========
+    // Game Store Comment Section Functionality
+    // ===========
+
+    // Select all submit buttons
+    const submitButtons = document.querySelectorAll(".submit-comment");
+
+    submitButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            // Get the related comment input and comment list
+            const gameCard = button.closest(".game-card");
+            const commentInput = gameCard.querySelector(".comment-text");
+            const commentList = gameCard.querySelector(".comment-list");
+
+            // Get the comment text
+            const comment = commentInput.value.trim();
+
+            if (comment === "") return; // Ignore empty comments
+
+            // Create a new comment element
+            const commentElement = document.createElement("div");
+            commentElement.classList.add("comment-item");
+
+            // Optional: Customize the comment style
+            commentElement.innerHTML = `
+                <p><strong>Anonymous:</strong> ${comment}</p>
+                <span class="date">${new Date().toLocaleString()}</span>
+            `;
+
+            // Append comment and clear input
+            commentList.appendChild(commentElement);
+            commentInput.value = "";
+        });
+    });
+});

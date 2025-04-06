@@ -83,6 +83,21 @@ body {
     color: var(--accent-color);
 }
 
+.comment-item {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #D1D1D1;
+    border-radius: 5px;
+}
+
+.comment-item .date {
+    display: block;
+    font-size: 0.8em;
+    color: gray;
+    margin-top: 4px;
+}
+
+
 .comment-input {
     display: flex;
     align-items: center;
@@ -102,7 +117,7 @@ body {
     margin-left: 5px;
     border: none;
     background-color: var(--accent-color);
-    color: white;
+    color: #D1D1D1;
     border-radius: 3px;
     cursor: pointer;
     font-size: 0.85em;

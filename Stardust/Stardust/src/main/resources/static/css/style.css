@@ -55,14 +55,16 @@ body {
 
 .game-card {
     background-color: var(--secondary-text);
-    padding: 10px;
+    padding: 4px;        /* Reduced padding */
     border-radius: 10px;
     color: white;
     text-align: center;
+    max-width: 550px;    /* Limit card width */
+    margin: 0 auto;      /* Center card within grid cell */
 }
 
 .game-card img {
-    width: 50%;
+    width: 60%;
     border-radius: 10px;
 }
 

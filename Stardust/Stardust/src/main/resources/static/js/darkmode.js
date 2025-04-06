@@ -27,10 +27,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // =========================
-    // Comment Section Functionality
+    // Comment Section Functionality (for Home Page)
     // =========================
 
-    // Select the necessary elements
+    // Select the necessary elements for the comment section
     const commentInput = document.getElementById("userComment");
     const publishBtn = document.getElementById("publish");
     const commentsContainer = document.querySelector(".comments");

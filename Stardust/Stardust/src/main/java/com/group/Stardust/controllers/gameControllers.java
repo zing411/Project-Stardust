@@ -34,7 +34,7 @@ public class gameControllers {
     public String home(@RequestParam(required = false) String search,
                        @RequestParam(defaultValue = "0") int page,
                        Model model) {
-        int size = 2;
+        int size = 10;
         List<Games> games = gameService.getGames(search, page, size);
         model.addAttribute("games", games);
         return "home";

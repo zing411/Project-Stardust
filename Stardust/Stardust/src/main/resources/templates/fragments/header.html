@@ -42,29 +42,13 @@
         <input type="text" name="search" id="searchInput"
                class="form-control mr-2 d-none" placeholder="Search games...">
       </form>
-
-      <!-- DARK MODE TOGGLE -->
-      <button id="theme_switch" class="btn btn-link text-white">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-             viewBox="0 0 24 24">
-          <path d="M12 4.354a7.646 7.646 0 1 1 0 15.292
-                       7.646 7.646 0 0 1 0-15.292zm0 13.292
-                       a5.646 5.646 0 1 0 0-11.292
-                       5.646 5.646 0 0 0 0 11.292z"/>
-          <path d="M12 2v2M12 20v2
-                       M4.222 4.222l1.414 1.414
-                       M18.364 18.364l1.414 1.414
-                       M2 12h2M20 12h2
-                       M4.222 19.778l1.414-1.414
-                       M18.364 5.636l1.414-1.414"/>
-        </svg>
-      </button>
+      
     </div>
   </div>
 </nav>
 
 <!-- Load your external darkmode.js -->
-<script th:src="@{/js/darkmode.js}" defer></script>
+<button id="theme_switch" onclick="document.body.classList.toggle('darkmode')">Toggle Dark Mode</button>
 
 <!-- Inline script for toggling search input -->
 <script>

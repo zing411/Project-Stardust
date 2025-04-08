@@ -1,34 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" th:href="@{/stardust/home}">Stardust</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+          aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarText">
+
+  <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" th:href="@{/stardust/home}">Home</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" th:href="@{/user/stardust/store}">Games</a>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/stardust/store}">Games</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" th:href="@{/register}">Register</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" th:href="@{/logout}">Logout</a>
-      </li>
+    </ul>
 
+    <!-- Container for Search Form & Dark Mode Toggle -->
+    <div class="d-flex align-items-center">
 
-      <!-- Button for toggling dark mode -->
-      <button id="theme_switch">
-        <!-- First SVG icon (for light mode) -->
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-          <path d="M481.15-140q-141.66 0-240.83-99.17-99.16-99.16-99.16-240.83 0-135.77 92.11-232.88 92.11-97.12 225.57-105.2 8.62 0 16.93.62 8.3.62 16.3 1.85-30.61 28.61-48.76 69.15-18.16 40.54-18.16 86.46 0 98.33 68.84 167.17Q562.82-424 661.15-424q46.54 0 86.77-18.15 40.23-18.16 68.46-48.77 1.23 8 1.85 16.31.61 8.3.61 16.92-7.69 133.46-104.8 225.57Q616.92-140 481.15-140Zm0-60q88 0 158-48.5t102-126.5q-20 5-40 8t-40 3q-123 0-209.5-86.5T365.15-660q0-20 3-40t8-40q-78 32-126.5 102t-48.5 158q0 116 82 198t198 82Zm-10-270Z"/>
-        </svg>
-        <!-- Second SVG icon (for dark mode) -->
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
-          <path d="M480.03-371q45.43 0 77.2-31.8Q589-434.6 589-480.03q0-45.43-31.8-77.2Q525.4-589 479.97-589q-45.43 0-77.2 31.8Q371-525.4 371-479.97q0 45.43 31.8 77.2Q434.6-371 480.03-371Zm-.03 91q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM205.5-434.5h-171v-91h171v91Zm720 0h-171v-91h171v91Zm-491-320v-171h91v171h-91Zm0 720v-171h91v171h-91ZM255.76-641.87 147.35-746.52l64.41-67.13 104.13 107.17-60.13 64.61Zm492.48 495.52L643.11-254.52 704-317.65l108.65 104.17-64.41 67.13ZM642.35-704l104.17-108.65 67.13 64.41-107.17 104.13L642.35-704Zm-496 492.24 108.17-105.13L317.65-256 213.48-147.35l-67.13-64.41ZM480-480Z"/>
+      <!-- SEARCH FORM (toggles input via the icon) -->
+      <form th:action="@{/stardust/store}" method="get" class="form-inline" id="searchForm">
+        <!-- Search Icon toggles the input field -->
+        <a href="#" id="searchIcon" class="text-white mr-2">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+               class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85
+                         a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.442 0
+                         a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+          </svg>
+        </a>
+        <!-- Hidden search input. Name MUST be 'search' so the controller sees it. -->
+        <input type="text" name="search" id="searchInput"
+               class="form-control mr-2 d-none" placeholder="Search games...">
+      </form>
+
+      <!-- DARK MODE TOGGLE -->
+      <button id="theme_switch" class="btn btn-link text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+             viewBox="0 0 24 24">
+          <path d="M12 4.354a7.646 7.646 0 1 1 0 15.292
+                       7.646 7.646 0 0 1 0-15.292zm0 13.292
+                       a5.646 5.646 0 1 0 0-11.292
+                       5.646 5.646 0 0 0 0 11.292z"/>
+          <path d="M12 2v2M12 20v2
+                       M4.222 4.222l1.414 1.414
+                       M18.364 18.364l1.414 1.414
+                       M2 12h2M20 12h2
+                       M4.222 19.778l1.414-1.414
+                       M18.364 5.636l1.414-1.414"/>
         </svg>
       </button>
+    </div>
   </div>
 </nav>
+
+<!-- Load your external darkmode.js -->
+<script th:src="@{/js/darkmode.js}" defer></script>
+
+<!-- Inline script for toggling search input -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Toggle search input
+    const searchIcon = document.getElementById("searchIcon");
+    const searchInput = document.getElementById("searchInput");
+
+    searchIcon.addEventListener("click", function(e) {
+      e.preventDefault();
+      searchInput.classList.toggle("d-none");
+      if (!searchInput.classList.contains("d-none")) {
+        searchInput.focus();
+      }
+    });
+  });
+</script>
+</body>
+</html>

@@ -40,37 +40,6 @@ public class gameControllers {
         return "home";
     }
 
-    /**
-     * Handles requests for the store page with optional search and pagination parameters.
-     *
-     * @param search Search keyword to filter games by title.
-     * @param page   Current page index (0-based).
-     * @param size   Number of games per page.
-     * @param model  Model object to pass data to the view.
-     * @return The Thymeleaf template name to render.
-     */
-
-    @GetMapping("/store")
-    public String store(
-            @RequestParam(defaultValue = "") String search,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "9") int size,
-            Model model
-    ){
-        // Retrieve filtered and paginated list of games.
-        List<Games> games = service.getGames(search, page, size);
-        // Calculate the total number of pages.
-        int totalPages = service.getTotalPages(size);
-
-        // Pass data to the Thymeleaf template.
-        model.addAttribute("games", games);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("search", search);
-
-        return "store";
-    }
-
 
 
 }

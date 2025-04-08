@@ -52,13 +52,13 @@
         <a
                 th:if="${currentPage > 0}"
                 class="btn btn-primary"
-                th:href="@{/stardust/store(page=${currentPage - 1}, search=${search})}"
+                th:href="@{/user/stardust/store(page=${currentPage - 1}, search=${search})}"
         >Previous</a
         >
         <a
                 th:if="${currentPage < totalPages - 1}"
                 class="btn btn-primary"
-                th:href="@{/stardust/store(page=${currentPage + 1}, search=${search})}"
+                th:href="@{/user/stardust/store(page=${currentPage + 1}, search=${search})}"
         >Next</a
         >
     </div>

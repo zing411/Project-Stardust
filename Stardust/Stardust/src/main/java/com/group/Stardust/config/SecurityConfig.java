@@ -36,15 +36,20 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 // Redirect to home after successful login
-                .formLogin(httpSecurityFormLoginConfigurer -> {
-                    httpSecurityFormLoginConfigurer
+                .formLogin( form -> form
                             .loginPage("/login")
                             .defaultSuccessUrl("/stardust/home", true)
-                            .permitAll();
-                })
-                .logout(httpSecurityLogoutConfigurer -> {
-                    httpSecurityLogoutConfigurer.logoutUrl("/logout").permitAll();
-                });
+                            .permitAll()
+                )
+                // logout configure
+                .logout( logout -> logout
+                    .logoutUrl("/logout")
+                        .permitAll()
+                )
+                // redirected to a denied page
+                .exceptionHandling(exception ->
+                        exception.accessDeniedPage("/accessdenied")
+                );
 
         return http.build();
     }

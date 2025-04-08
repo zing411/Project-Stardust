@@ -16,15 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AuthController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public AuthController(UserService userService) {
         this.userService = userService;
-    }
-
-    @GetMapping("/error")
-    public String handlerror() {
-        return "auth/error";
     }
 
     // handles the login

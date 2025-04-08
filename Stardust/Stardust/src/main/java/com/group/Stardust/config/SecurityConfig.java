@@ -48,7 +48,7 @@ public class SecurityConfig {
                 )
                 // redirected to a denied page
                 .exceptionHandling(exception ->
-                        exception.accessDeniedPage("/accessdenied")
+                        exception.accessDeniedPage("/accessDenied")
                 );
 
         return http.build();

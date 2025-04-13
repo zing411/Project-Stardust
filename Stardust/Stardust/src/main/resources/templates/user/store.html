@@ -1,105 +1,297 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <title>Game Store</title>-->
+<!--    &lt;!&ndash; Bootstrap CSS for styling &ndash;&gt;-->
+<!--    <link-->
+<!--            rel="stylesheet"-->
+<!--            href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"-->
+<!--            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"-->
+<!--            crossorigin="anonymous"-->
+<!--    />-->
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}" />-->
+<!--    &lt;!&ndash; Load your external darkmode.js &ndash;&gt;-->
+<!--    <script th:src="@{/js/darkmode.js}" defer></script>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; Include header fragment (which now has the search form and dark mode toggle) &ndash;&gt;-->
+<!--<header th:include="@{/fragments/header.html}"></header>-->
+
+<!--<main class="container mt-4">-->
+<!--    <h1>Game List</h1>-->
+
+
+<!--    &lt;!&ndash; Grid container for game cards &ndash;&gt;-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-4 mb-4" th:each="game, iterStat : ${games}">-->
+<!--            <div class="card">-->
+<!--                <img-->
+<!--                        th:src="${game.thumbnail}"-->
+<!--                        class="card-img-top"-->
+<!--                        alt="Game Cover"-->
+<!--                        style="cursor:pointer;"-->
+<!--                        data-toggle="modal"-->
+<!--                        th:data-target="'#gameModal__' + ${iterStat.index}"-->
+<!--                />-->
+<!--                <div class="card-body">-->
+
+<!--                    <h5-->
+<!--                            class="card-title"-->
+<!--                            th:text="${game.title}"-->
+<!--                            style="cursor:pointer;"-->
+<!--                            data-toggle="modal"-->
+<!--                            th:data-target="'#gameModal__' + ${iterStat.index}"-->
+<!--                    ></h5>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Pagination: Previous and Next buttons &ndash;&gt;-->
+<!--    <div class="d-flex justify-content-between mt-4">-->
+<!--        <a-->
+<!--                th:if="${currentPage > 0}"-->
+<!--                class="btn btn-primary"-->
+<!--                th:href="@{/user/stardust/store(page=${currentPage - 1}, search=${search})}"-->
+<!--        >Previous</a-->
+<!--        >-->
+<!--        <a-->
+<!--                th:if="${currentPage < totalPages - 1}"-->
+<!--                class="btn btn-primary"-->
+<!--                th:href="@{/user/stardust/store(page=${currentPage + 1}, search=${search})}"-->
+<!--        >Next</a-->
+<!--        >-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Error Modal: Shown when search returns no results &ndash;&gt;-->
+<!--    <div-->
+<!--            class="modal fade"-->
+<!--            id="errorModal"-->
+<!--            tabindex="-1"-->
+<!--            role="dialog"-->
+<!--            aria-labelledby="errorModalLabel"-->
+<!--            aria-hidden="true"-->
+<!--    >-->
+<!--        <div class="modal-dialog" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" id="errorModalLabel">Error</h5>-->
+<!--                    <button-->
+<!--                            type="button"-->
+<!--                            class="close"-->
+<!--                            data-dismiss="modal"-->
+<!--                            aria-label="Close"-->
+<!--                    >-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">Sorry, the game is unavailable.</div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button-->
+<!--                            type="button"-->
+<!--                            class="btn btn-secondary"-->
+<!--                            data-dismiss="modal"-->
+<!--                    >-->
+<!--                        Close-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    &lt;!&ndash; Inline script to trigger error modal if search query is present but no games found &ndash;&gt;-->
+<!--    <div th:if="${#lists.isEmpty(games) and search != ''}">-->
+<!--        <script>-->
+<!--            document.addEventListener("DOMContentLoaded", function () {-->
+<!--                $('#errorModal').modal('show');-->
+<!--            });-->
+<!--        </script>-->
+<!--    </div>-->
+<!--</main>-->
+
+<!--&lt;!&ndash; Game Detail Modals for each game card &ndash;&gt;-->
+<!--<div th:each="game, iterStat : ${games}">-->
+<!--    <div-->
+<!--            class="modal fade"-->
+<!--            th:id="'gameModal__' + ${iterStat.index}"-->
+<!--            tabindex="-1"-->
+<!--            role="dialog"-->
+<!--            aria-labelledby="gameModalLabel"-->
+<!--            aria-hidden="true"-->
+<!--    >-->
+<!--        <div class="modal-dialog modal-lg" role="document">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title" th:text="${game.title}">Game Title</h5>-->
+<!--                    <button-->
+<!--                            type="button"-->
+<!--                            class="close"-->
+<!--                            data-dismiss="modal"-->
+<!--                            aria-label="Close"-->
+<!--                    >-->
+<!--                        <span aria-hidden="true">&times;</span>-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <img-->
+<!--                            th:src="${game.thumbnail}"-->
+<!--                            class="img-fluid mb-3"-->
+<!--                            alt="Game Cover"-->
+<!--                    />-->
+<!--                    <p>-->
+<!--                        <strong>Genre:</strong>-->
+<!--                        <span th:text="${game.genre}"></span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <strong>Description:</strong>-->
+<!--                        <span th:text="${game.short_description}"></span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <strong>Developer:</strong>-->
+<!--                        <span th:text="${game.developer}"></span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <strong>Publisher:</strong>-->
+<!--                        <span th:text="${game.publisher}"></span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <strong>Release Date:</strong>-->
+<!--                        <span th:text="${game.release_date}"></span>-->
+<!--                    </p>-->
+<!--                    <p>-->
+<!--                        <strong>Rating:</strong>-->
+<!--                        <span th:text="${game.rating}"></span>/10-->
+<!--                    </p>-->
+<!--                    &lt;!&ndash; Comment Section within Modal &ndash;&gt;-->
+<!--                    <div class="comment-section mt-4">-->
+<!--                        <h4>Reviews</h4>-->
+<!--                        <div class="comment-list">-->
+<!--                            <p>No reviews yet.</p>-->
+<!--                        </div>-->
+<!--                        <div class="comment-input mt-2">-->
+<!--                            <input-->
+<!--                                    type="text"-->
+<!--                                    placeholder="Write a comment..."-->
+<!--                                    class="form-control comment-text"-->
+<!--                            />-->
+<!--                            <button-->
+<!--                                    class="btn btn-secondary submit-comment mt-2"-->
+<!--                            >-->
+<!--                                Submit-->
+<!--                            </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button-->
+<!--                            type="button"-->
+<!--                            class="btn btn-secondary"-->
+<!--                            data-dismiss="modal"-->
+<!--                    >-->
+<!--                        Close-->
+<!--                    </button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Bootstrap JS and dependencies &ndash;&gt;-->
+<!--<script-->
+<!--        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"-->
+<!--        integrity="sha384-J6qa4849blE2+poT1nG6eQb4rO/h4Sk4h+Y3c9FqPJbctI8AmMjOkf9+Y3Ns4Z7"-->
+<!--        crossorigin="anonymous"-->
+<!--&gt;</script>-->
+<!--<script-->
+<!--        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"-->
+<!--        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldhv/z4f0Jhz0L4BkLv9Q1zIjY5xyf41F6IldE+"-->
+<!--        crossorigin="anonymous"-->
+<!--&gt;</script>-->
+<!--<script-->
+<!--        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"-->
+<!--        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"-->
+<!--        crossorigin="anonymous"-->
+<!--&gt;</script>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8" />
     <title>Game Store</title>
-    <!-- Bootstrap CSS for styling -->
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-            crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
-    <!-- Load your external darkmode.js -->
     <script th:src="@{/js/darkmode.js}" defer></script>
 </head>
 <body>
-<!-- Include header fragment (which now has the search form and dark mode toggle) -->
 <header th:include="@{/fragments/header.html}"></header>
 
 <main class="container mt-4">
     <h1>Game List</h1>
 
-
     <!-- Grid container for game cards -->
     <div class="row">
         <div class="col-md-4 mb-4" th:each="game, iterStat : ${games}">
             <div class="card">
-                <img
-                        th:src="${game.thumbnail}"
-                        class="card-img-top"
-                        alt="Game Cover"
-                        style="cursor:pointer;"
-                        data-toggle="modal"
-                        th:data-target="'#gameModal__' + ${iterStat.index}"
-                />
+                <img th:src="${game.thumbnail}" class="card-img-top" alt="Game Cover"
+                     data-toggle="modal" th:data-target="'#gameModal__' + ${iterStat.index}" style="cursor:pointer;" />
                 <div class="card-body">
-                    <h5
-                            class="card-title"
-                            th:text="${game.title}"
-                            style="cursor:pointer;"
-                            data-toggle="modal"
-                            th:data-target="'#gameModal__' + ${iterStat.index}"
-                    ></h5>
+                    <h5 class="card-title" th:text="${game.title}"
+                        data-toggle="modal" th:data-target="'#gameModal__' + ${iterStat.index}" style="cursor:pointer;">
+                        Game Title
+                    </h5>
+
+                    <!-- ⭐ Fixed Average Rating -->
+                    <div th:with="avgRating=${reviewService.getAverageRating(game.title)}">
+                        <span>Rating:</span>
+                        <span th:each="star : ${#numbers.sequence(1, 5)}"
+                              th:text="${star <= avgRating} ? '★' : '☆'"
+                              style="color: gold; font-size: 1.2em; margin-right: 2px;">
+                        </span>
+                        <span th:text="|(${reviewService.getReviewsByGame(game.title).size()})|"></span>
+                    </div>
+
+                    <!-- 💬 Review List Preview -->
+                    <div class="mt-2">
+                        <strong>Reviews:</strong>
+                        <ul style="max-height: 100px; overflow-y: auto; padding-left: 1rem;">
+                            <li th:each="r : ${reviewService.getReviewsByGame(game.title)}" th:text="${r.comment}"></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Pagination: Previous and Next buttons -->
+    <!-- Pagination -->
     <div class="d-flex justify-content-between mt-4">
-        <a
-                th:if="${currentPage > 0}"
-                class="btn btn-primary"
-                th:href="@{/user/stardust/store(page=${currentPage - 1}, search=${search})}"
-        >Previous</a
-        >
-        <a
-                th:if="${currentPage < totalPages - 1}"
-                class="btn btn-primary"
-                th:href="@{/user/stardust/store(page=${currentPage + 1}, search=${search})}"
-        >Next</a
-        >
+        <a th:if="${currentPage > 0}" class="btn btn-primary"
+           th:href="@{/user/stardust/store(page=${currentPage - 1}, search=${search})}">Previous</a>
+        <a th:if="${currentPage < totalPages - 1}" class="btn btn-primary"
+           th:href="@{/user/stardust/store(page=${currentPage + 1}, search=${search})}">Next</a>
     </div>
 
-    <!-- Error Modal: Shown when search returns no results -->
-    <div
-            class="modal fade"
-            id="errorModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="errorModalLabel"
-            aria-hidden="true"
-    >
+    <!-- Error Modal -->
+    <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="errorModalLabel">Error</h5>
-                    <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                    >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">Sorry, the game is unavailable.</div>
                 <div class="modal-footer">
-                    <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                    >
-                        Close
-                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Inline script to trigger error modal if search query is present but no games found -->
     <div th:if="${#lists.isEmpty(games) and search != ''}">
         <script>
             document.addEventListener("DOMContentLoaded", function () {
@@ -109,108 +301,51 @@
     </div>
 </main>
 
-<!-- Game Detail Modals for each game card -->
+<!-- Game Detail Modals -->
 <div th:each="game, iterStat : ${games}">
-    <div
-            class="modal fade"
-            th:id="'gameModal__' + ${iterStat.index}"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="gameModalLabel"
-            aria-hidden="true"
-    >
+    <div class="modal fade" th:id="'gameModal__' + ${iterStat.index}" tabindex="-1"
+         role="dialog" aria-labelledby="gameModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" th:text="${game.title}">Game Title</h5>
-                    <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-label="Close"
-                    >
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img
-                            th:src="${game.thumbnail}"
-                            class="img-fluid mb-3"
-                            alt="Game Cover"
-                    />
-                    <p>
-                        <strong>Genre:</strong>
-                        <span th:text="${game.genre}"></span>
-                    </p>
-                    <p>
-                        <strong>Description:</strong>
-                        <span th:text="${game.short_description}"></span>
-                    </p>
-                    <p>
-                        <strong>Developer:</strong>
-                        <span th:text="${game.developer}"></span>
-                    </p>
-                    <p>
-                        <strong>Publisher:</strong>
-                        <span th:text="${game.publisher}"></span>
-                    </p>
-                    <p>
-                        <strong>Release Date:</strong>
-                        <span th:text="${game.release_date}"></span>
-                    </p>
-                    <p>
-                        <strong>Rating:</strong>
-                        <span th:text="${game.rating}"></span>/10
-                    </p>
-                    <!-- Comment Section within Modal -->
+                    <img th:src="${game.thumbnail}" class="img-fluid mb-3" alt="Game Cover" />
+                    <p><strong>Genre:</strong> <span th:text="${game.genre}"></span></p>
+                    <p><strong>Description:</strong> <span th:text="${game.short_description}"></span></p>
+                    <p><strong>Developer:</strong> <span th:text="${game.developer}"></span></p>
+                    <p><strong>Publisher:</strong> <span th:text="${game.publisher}"></span></p>
+                    <p><strong>Release Date:</strong> <span th:text="${game.release_date}"></span></p>
+                    <p><strong>Rating:</strong> <span th:text="${game.rating}"></span>/10</p>
+
+                    <!-- Placeholder Comment Section -->
                     <div class="comment-section mt-4">
                         <h4>Reviews</h4>
                         <div class="comment-list">
                             <p>No reviews yet.</p>
                         </div>
                         <div class="comment-input mt-2">
-                            <input
-                                    type="text"
-                                    placeholder="Write a comment..."
-                                    class="form-control comment-text"
-                            />
-                            <button
-                                    class="btn btn-secondary submit-comment mt-2"
-                            >
-                                Submit
-                            </button>
+                            <input type="text" placeholder="Write a comment..." class="form-control comment-text" />
+                            <button class="btn btn-secondary submit-comment mt-2">Submit</button>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button
-                            type="button"
-                            class="btn btn-secondary"
-                            data-dismiss="modal"
-                    >
-                        Close
-                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Bootstrap JS and dependencies -->
-<script
-        src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT1nG6eQb4rO/h4Sk4h+Y3c9FqPJbctI8AmMjOkf9+Y3Ns4Z7"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldhv/z4f0Jhz0L4BkLv9Q1zIjY5xyf41F6IldE+"
-        crossorigin="anonymous"
-></script>
-<script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"
-></script>
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
+

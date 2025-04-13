@@ -19,7 +19,7 @@ public class gameControllers {
 
     //injecting the gameService to access business logic
     @Autowired
-    private gameService service;
+    //private gameService service;
 
 
     private final gameService gameService; // Consider renaming to GameService per Java conventions

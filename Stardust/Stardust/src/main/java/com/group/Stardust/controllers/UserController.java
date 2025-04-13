@@ -1,6 +1,7 @@
 package com.group.Stardust.controllers;
 
 import com.group.Stardust.models.Games;
+import com.group.Stardust.service.ReviewService;
 import com.group.Stardust.service.gameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,9 @@ public class UserController {
 
     @Autowired
     private gameService service;
+
+    @Autowired
+    private ReviewService reviewService;
 
 
     /**
@@ -47,6 +51,8 @@ public class UserController {
         model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("search", search);
+        model.addAttribute("reviewService", reviewService);
+
 
         return "user/store";
     }

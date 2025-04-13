@@ -2,102 +2,106 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title>Register - Stardust</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+          crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/darkmode.js}" defer></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Courier New", monospace;
             background-color: var(--base-color);
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            color: var(--text-color);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
+            padding: 20px;
         }
+
         .glass-card {
             background: var(--base-variant);
             border-radius: 15px;
             padding: 30px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 400px;
             text-align: center;
-            width: 350px;
             border: 2px solid var(--primary-color);
         }
-        .glass-card h1 {
-            color: var(--text-color);
+
+        h1 {
+            font-size: 1.8rem;
             margin-bottom: 20px;
+            color: var(--accent-color);
         }
+
         .form-control, .form-select {
-            background: var(--base-variant);
-            border: none;
+            background-color: var(--base-color);
+            border: 1px solid var(--primary-color);
             color: var(--text-color);
-            padding: 10px;
-            border-radius: 8px;
+            margin-bottom: 15px;
+            border-radius: 6px;
         }
+
         .form-control::placeholder {
             color: var(--text-color);
-            opacity: 0.7;
+            opacity: 0.6;
         }
+
         .btn-register {
-            width: 100%;
-            padding: 10px;
-            border: none;
             background-color: var(--accent-color);
-            color: var(--base-color);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
+            color: white;
             font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
             text-transform: uppercase;
+            transition: background-color 0.3s ease;
         }
+
         .btn-register:hover {
             background-color: darkred;
         }
+
         .alert {
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
+            font-size: 0.9rem;
         }
-        /* Dark Mode Toggle Button */
+
         #theme_switch {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 15px;
+            right: 15px;
             background: none;
             border: 1px solid var(--primary-color);
             color: var(--text-color);
-            padding: 5px 10px;
-            cursor: pointer;
+            padding: 5px 12px;
             border-radius: 5px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-<button id="theme_switch" onclick="document.body.classList.toggle('darkmode')">Toggle Dark Mode</button>
+<button id="theme_switch">Toggle Dark Mode</button>
+
 <div class="glass-card">
-    <h1>Register for Stardust!</h1>
+    <h1>Create Your Stardust Account</h1>
 
     <div class="alert alert-info" role="alert" th:if="${message}">
         <span th:text="${message}"></span>
     </div>
 
     <form th:object="${user}" th:action="@{/register}" method="post">
-        <div class="mb-3">
-            <input type="text" class="form-control" placeholder="Enter username" th:field="*{username}" required>
-        </div>
-        <div class="mb-3">
-            <input type="password" class="form-control" placeholder="Enter password" th:field="*{password}" required>
-        </div>
-        <div class="mb-3">
-            <select class="form-select" th:field="*{role}" required>
-                <option value="USER">User</option>
-            </select>
-        </div>
+        <input type="text" class="form-control" placeholder="Username" th:field="*{username}" required />
+
+        <input type="password" class="form-control" placeholder="Password" th:field="*{password}" required />
+
+        <select class="form-select" th:field="*{role}" required>
+            <option value="USER" selected>User</option>
+        </select>
+
         <button type="submit" class="btn-register">Register</button>
     </form>
 </div>

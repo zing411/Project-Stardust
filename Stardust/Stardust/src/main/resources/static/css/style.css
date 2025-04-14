@@ -1,5 +1,151 @@
+/*!* =========================*/
+/*   Root Variables & Dark Mode Overrides*/
+/*   ========================= *!*/
+/*:root {*/
+/*    --base-color: white;*/
+/*    --base-variant: #e8e9ed;*/
+/*    --text-color: #111528;*/
+/*    --secondary-text: #232738;*/
+/*    --primary-color: #525252;*/
+/*    --accent-color: #0E86D4;*/
+/*}*/
+
+/*.darkmode {*/
+/*    --base-color: #2E2E2E;*/
+/*    --base-variant: #101425;*/
+/*    --text-color: #ffffff;*/
+/*    --secondary-text: #a4a5b8;*/
+/*    --primary-color: #525252;*/
+/*    --accent-color: #0E86D4;*/
+/*}*/
+
+/*!* =========================*/
+/*   Global Styles*/
+/*   ========================= *!*/
+/** {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+/*body {*/
+/*    font-family: "Courier New", sans-serif;*/
+/*    background-color: var(--base-color);*/
+/*    color: var(--text-color);*/
+/*    padding: 20px;*/
+/*    min-height: 100vh;*/
+/*}*/
+
+/*!* =========================*/
+/*   Grid Container for Game Cards*/
+/*   ========================= *!*/
+/*.game-container {*/
+/*    display: grid;*/
+/*    grid-template-columns: repeat(3, 1fr); !* 3 columns; adjust as needed *!*/
+/*    gap: 20px;*/
+/*    margin-top: 20px;*/
+/*}*/
+
+/*!* =========================*/
+/*   Game Card Styles*/
+/*   ========================= *!*/
+/*.game-card {*/
+/*    background-color: var(--secondary-text);*/
+/*    padding: 4px;        !* Reduced padding for smaller cards *!*/
+/*    border-radius: 10px;*/
+/*    color: white;*/
+/*    text-align: center;*/
+/*    max-width: 350px;    !* Adjust to your desired smaller width *!*/
+/*    margin: 0 auto;      !* Center the card *!*/
+/*}*/
+
+/*.game-card img {*/
+/*    width: 60%;          !* Adjust image width inside the card *!*/
+/*    border-radius: 10px;*/
+/*}*/
+
+/*!* =========================*/
+/*   Comment Section within Game Card*/
+/*   ========================= *!*/
+/*.comment-section {*/
+/*    background-color: var(--base-variant);*/
+/*    padding: 10px;*/
+/*    margin-top: 10px;*/
+/*    border-radius: 5px;*/
+/*    font-size: 0.85em;*/
+/*    max-height: 200px;   !* Limit overall height *!*/
+/*    overflow-y: auto;    !* Allow scrolling if comments grow *!*/
+/*}*/
+
+/*.comment-section h4 {*/
+/*    margin-bottom: 8px;*/
+/*    font-size: 1em;*/
+/*    color: var(--accent-color);*/
+/*}*/
+
+/*.comment-item {*/
+/*    margin-bottom: 10px;*/
+/*    padding: 10px;*/
+/*    background-color: #D1D1D1;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.comment-item .date {*/
+/*    display: block;*/
+/*    font-size: 0.8em;*/
+/*    color: gray;*/
+/*    margin-top: 4px;*/
+/*}*/
+
+
+/*.comment-input {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    margin-top: 8px;*/
+/*}*/
+
+/*.comment-input input.comment-text {*/
+/*    flex: 1;*/
+/*    padding: 5px;*/
+/*    border: 1px solid var(--primary-color);*/
+/*    border-radius: 3px;*/
+/*    font-size: 0.85em;*/
+/*}*/
+
+/*.comment-input button.submit-comment {*/
+/*    padding: 5px 8px;*/
+/*    margin-left: 5px;*/
+/*    border: none;*/
+/*    background-color: var(--accent-color);*/
+/*    color: #D1D1D1;*/
+/*    border-radius: 3px;*/
+/*    cursor: pointer;*/
+/*    font-size: 0.85em;*/
+/*}*/
+
+/*!* =========================*/
+/*   Footer Styles*/
+/*   ========================= *!*/
+/*footer {*/
+/*    margin-top: 20px;*/
+/*    text-align: center;*/
+/*    padding: 10px;*/
+/*    background-color: var(--primary-color);*/
+/*    color: white;*/
+/*}*/
+
+/*!* =========================*/
+/*   Dark Mode Button (Header) Styles*/
+/*   ========================= *!*/
+/*#theme_switch {*/
+/*    background: none;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*}*/
+
+
 /* =========================
-   Root Variables & Dark Mode Overrides
+   Global Variables
    ========================= */
 :root {
     --base-color: white;
@@ -22,50 +168,42 @@
 /* =========================
    Global Styles
    ========================= */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: "Courier New", sans-serif;
     background-color: var(--base-color);
     color: var(--text-color);
+    font-family: "Courier New", sans-serif;
     padding: 20px;
     min-height: 100vh;
 }
 
 /* =========================
-   Grid Container for Game Cards
+   Header (Optional Additional Styling)
+   ========================= */
+/* (Any extra header styling, if not already done inline in header.html) */
+
+/* =========================
+   Game Cards and Grid Container
    ========================= */
 .game-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns; adjust as needed */
+    grid-template-columns: repeat(3, 1fr); /* Adjust the number of columns as needed */
     gap: 20px;
     margin-top: 20px;
 }
 
-/* =========================
-   Game Card Styles
-   ========================= */
-.game-card {
-    background-color: var(--secondary-text);
-    padding: 4px;        /* Reduced padding for smaller cards */
-    border-radius: 10px;
-    color: white;
-    text-align: center;
-    max-width: 350px;    /* Adjust to your desired smaller width */
-    margin: 0 auto;      /* Center the card */
+/* Basic card styling if using a custom container;
+   note: Bootstrap's .card class is used in our templates */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.game-card img {
-    width: 60%;          /* Adjust image width inside the card */
-    border-radius: 10px;
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* =========================
-   Comment Section within Game Card
+   Comment Section Styling (Used in Modals)
    ========================= */
 .comment-section {
     background-color: var(--base-variant);
@@ -73,8 +211,8 @@ body {
     margin-top: 10px;
     border-radius: 5px;
     font-size: 0.85em;
-    max-height: 200px;   /* Limit overall height */
-    overflow-y: auto;    /* Allow scrolling if comments grow */
+    max-height: 200px;
+    overflow-y: auto;
 }
 
 .comment-section h4 {
@@ -97,48 +235,44 @@ body {
     margin-top: 4px;
 }
 
-
-.comment-input {
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-}
-
-.comment-input input.comment-text {
-    flex: 1;
-    padding: 5px;
-    border: 1px solid var(--primary-color);
-    border-radius: 3px;
-    font-size: 0.85em;
-}
-
-.comment-input button.submit-comment {
-    padding: 5px 8px;
-    margin-left: 5px;
-    border: none;
+/* =========================
+   Button Styling for Modern Look
+   ========================= */
+a.btn-home, .btn-home {
     background-color: var(--accent-color);
-    color: #D1D1D1;
-    border-radius: 3px;
+    color: var(--base-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 0.85em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    font-weight: bold;
 }
 
-/* =========================
-   Footer Styles
-   ========================= */
-footer {
-    margin-top: 20px;
-    text-align: center;
-    padding: 10px;
-    background-color: var(--primary-color);
-    color: white;
+a.btn-home:hover, .btn-home:hover {
+    background-color: darkred;
 }
 
-/* =========================
-   Dark Mode Button (Header) Styles
-   ========================= */
+/* Dark Mode Toggle Icon Styling */
 #theme_switch {
     background: none;
     border: none;
     cursor: pointer;
+}
+
+/* =========================
+   Additional Modern Aesthetic Enhancements
+   ========================= */
+
+/* Example: Set smooth scrolling behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Example: Improve spacing in the main container */
+main.container {
+    margin-top: 40px;
+    margin-bottom: 40px;
 }

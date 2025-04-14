@@ -7,15 +7,31 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <script th:src="@{/js/darkmode.js}" defer></script>
+    <style>
+        /* Starfield background styles */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: var(--base-color);
+        }
+    </style>
 </head>
 <body>
+<canvas id="starfield"></canvas>
+<!-- The dark mode toggle button is not added here because it is already present in the header -->
 <header th:include="@{/fragments/header.html}"></header>
 
 <main class="container mt-4">
-    <h1>Welcome to Stardust Game Listings</h1>
-    <p>Your one-stop hub for exploring the best games across platforms.</p>
+    <!-- Welcome Message & Explore Message in a Text Box -->
+    <div class="text-box">
+        <h1>Welcome to Stardust Game Listings</h1>
+        <p>Your one-stop hub for exploring the best games across platforms.</p>
+    </div>
 
-    <
     <!-- Game Slideshow Carousel -->
     <section class="carousel-container my-4">
         <h2 class="mb-3">Top Featured Games</h2>
@@ -40,60 +56,19 @@
         </div>
     </section>
 
-
-    <!-- Latest Gaming News Section -->
-    <section class="news">
-        <h2>Latest Gaming News</h2>
-        <article>
-            <h3>Upcoming Releases</h3>
-            <p>Check out what's hitting the shelves this month.</p>
-        </article>
-        <article>
-            <h3>Game Updates</h3>
-            <p>Find out about the latest patches and DLCs.</p>
-        </article>
-    </section>
-
-    <!-- Comment Section (Visible to all, but input only for logged-in users) -->
-    <div class="container mt-5">
-        <div class="head">Post a Comment</div>
-        <div><span id="comment">0</span> Comments</div>
-        <div class="text">
-            <p>We are happy to hear from you</p>
-        </div>
-        <div class="comments"></div>
-
-        <!-- Only show input for authenticated users -->
-        <sec:authorize access="isAuthenticated()">
-            <div class="commentbox mt-3">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
-                    <path d="M480.16-502Q395-502 336.5-561T278-704.5q0-84.5 58.34-142.5t143.5-58q85.16 0 143.66 57.89T682-704q0 84-58.34 143t-143.5 59ZM114-86v-159q0-46.77 23.79-84.47Q161.58-367.16 201-387q66-34 136.17-51 70.18-17 142.55-17Q554-455 624-438t135 50q39.42 19.69 63.21 57.11T846-245.05V-86H114Z"/>
-                </svg>
-                <div class="content">
-                    <h2>Comment as: </h2>
-                    <label>
-                        <input type="text" value="Anonymous" class="user">
-                    </label>
-                    <div class="commentinput">
-                        <input type="text" id="userComment" placeholder="Enter comment" class="comment">
-                        <div class="buttons">
-                            <button type="submit" disabled id="publish">Publish</button>
-                            <div class="notify">
-                                <label>
-                                    <input type="checkbox" class="notify input">
-                                </label>
-                                <span>Notify me</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </sec:authorize>
-
-        <!-- For guests -->
-        <sec:authorize access="!isAuthenticated()">
-            <p><em>Please log in to post comments and add games to your wishlist.</em></p>
-        </sec:authorize>
+    <!-- Latest Gaming News Section in a Text Box -->
+    <div class="text-box">
+        <section class="news">
+            <h2>Latest Gaming News</h2>
+            <article>
+                <h3>Upcoming Releases</h3>
+                <p>Check out what's hitting the shelves this month.</p>
+            </article>
+            <article>
+                <h3>Game Updates</h3>
+                <p>Find out about the latest patches and DLCs.</p>
+            </article>
+        </section>
     </div>
 </main>
 
@@ -104,6 +79,101 @@
 <!-- Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+<!-- Starfield Animation Script -->
+<script>
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 120; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            speed: Math.random() * 0.5 + 0.2
+        });
+    }
+
+    function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    }
+
+    function updateStars() {
+        stars.forEach(star => {
+            star.y += star.speed;
+            if (star.y > canvas.height) {
+                star.y = 0;
+                star.x = Math.random() * canvas.width;
+            }
+        });
+    }
+
+    function animate() {
+        drawStars();
+        updateStars();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
 </body>
 </html>
 
+
+
+<!--    &lt;!&ndash; Comment Section (Visible to all, but input only for logged-in users) &ndash;&gt;-->
+<!--    <div class="container mt-5">-->
+<!--        <div class="head">Post a Comment</div>-->
+<!--        <div><span id="comment">0</span> Comments</div>-->
+<!--        <div class="text">-->
+<!--            <p>We are happy to hear from you</p>-->
+<!--        </div>-->
+<!--        <div class="comments"></div>-->
+
+<!--        &lt;!&ndash; Only show input for authenticated users &ndash;&gt;-->
+<!--        <sec:authorize access="isAuthenticated()">-->
+<!--            <div class="commentbox mt-3">-->
+<!--                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">-->
+<!--                    <path d="M480.16-502Q395-502 336.5-561T278-704.5q0-84.5 58.34-142.5t143.5-58q85.16 0 143.66 57.89T682-704q0 84-58.34 143t-143.5 59ZM114-86v-159q0-46.77 23.79-84.47Q161.58-367.16 201-387q66-34 136.17-51 70.18-17 142.55-17Q554-455 624-438t135 50q39.42 19.69 63.21 57.11T846-245.05V-86H114Z"/>-->
+<!--                </svg>-->
+<!--                <div class="content">-->
+<!--                    <h2>Comment as: </h2>-->
+<!--                    <label>-->
+<!--                        <input type="text" value="Anonymous" class="user">-->
+<!--                    </label>-->
+<!--                    <div class="commentinput">-->
+<!--                        <input type="text" id="userComment" placeholder="Enter comment" class="comment">-->
+<!--                        <div class="buttons">-->
+<!--                            <button type="submit" disabled id="publish">Publish</button>-->
+<!--                            <div class="notify">-->
+<!--                                <label>-->
+<!--                                    <input type="checkbox" class="notify input">-->
+<!--                                </label>-->
+<!--                                <span>Notify me</span>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </sec:authorize>-->
+
+<!--        &lt;!&ndash; For guests &ndash;&gt;-->
+<!--        <sec:authorize access="!isAuthenticated()">-->
+<!--            <p><em>Please log in to post comments and add games to your wishlist.</em></p>-->
+<!--        </sec:authorize>-->
+<!--    </div>-->
+<!--</main>-->

@@ -249,6 +249,12 @@
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
+
+        /* Dark mode styles for modals */
+        .darkmode .modal-content {
+            background-color: var(--base-variant);
+            color: var(--text-color);
+        }
     </style>
 </head>
 <body>
@@ -278,7 +284,7 @@
                         <span th:each="star : ${#numbers.sequence(1, 5)}"
                               th:text="${star <= avgRating} ? '★' : '☆'"
                               style="color: gold; font-size: 1.2em; margin-right: 2px;">
-                        </span>
+                            </span>
                         <span th:text="|(${reviewService.getReviewsByGame(game.title).size()})|"></span>
                     </div>
 

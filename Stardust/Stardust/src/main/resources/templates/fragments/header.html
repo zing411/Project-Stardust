@@ -34,8 +34,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                class="bi bi-search" viewBox="0 0 16 16">
             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001l3.85 3.85
-                         a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.442 0
-                         a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
+                     a1 1 0 0 0 1.415-1.415l-3.85-3.85zm-5.442 0
+                     a5 5 0 1 1 0-10 5 5 0 0 1 0 10z"/>
           </svg>
         </a>
         <!-- Hidden search input. Name MUST be 'search' so the controller sees it. -->
@@ -43,15 +43,21 @@
                class="form-control mr-2 d-none" placeholder="Search games...">
       </form>
 
-      <!-- Load your external darkmode.js -->
-      <button id="theme_switch" onclick="document.body.classList.toggle('darkmode')">Toggle Dark Mode</button>
+      <!-- Dark Mode Toggle Button with SVG Icon -->
+      <button id="theme_switch" onclick="toggleDarkMode()" style="background:none; border:none; cursor:pointer;">
+        <span id="theme_icon">
+          <!-- Initially, display the light mode icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+            <path d="M480.03-371q45.43 0 77.2-31.8Q589-434.6 589-480.03q0-45.43-31.8-77.2Q525.4-589 479.97-589q-45.43 0-77.2 31.8Q371-525.4 371-479.97q0 45.43 31.8 77.2Q434.6-371 480.03-371Zm-.03 91q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM205.5-434.5h-171v-91h171v91Zm720 0h-171v-91h171v91Zm-491-320v-171h91v171h-91Zm0 720v-171h91v171h-91ZM255.76-641.87 147.35-746.52l64.41-67.13 104.13 107.17-60.13 64.61Zm492.48 495.52L643.11-254.52 704-317.65l108.65 104.17-64.41 67.13ZM642.35-704l104.17-108.65 67.13 64.41-107.17 104.13L642.35-704Zm-496 492.24 108.17-105.13L317.65-256 213.48-147.35l-67.13-64.41ZM480-480Z"/>
+          </svg>
+        </span>
+      </button>
 
     </div>
   </div>
 </nav>
 
-
-<!-- Inline script for toggling search input -->
+<!-- Inline script for toggling search input and dark mode icon -->
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Toggle search input
@@ -66,6 +72,26 @@
       }
     });
   });
+
+  function toggleDarkMode(){
+    document.body.classList.toggle('darkmode');
+    const themeIcon = document.getElementById('theme_icon');
+    if(document.body.classList.contains('darkmode')){
+      // Set dark mode icon
+      themeIcon.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+          <path d="M481.15-140q-141.66 0-240.83-99.17-99.16-99.16-99.16-240.83 0-135.77 92.11-232.88 92.11-97.12 225.57-105.2 8.62 0 16.93.62 8.3.62 16.3 1.85-30.61 28.61-48.76 69.15-18.16 40.54-18.16 86.46 0 98.33 68.84 167.17Q562.82-424 661.15-424q46.54 0 86.77-18.15 40.23-18.16 68.46-48.77 1.23 8 1.85 16.31.61 8.3.61 16.92-7.69 133.46-104.8 225.57Q616.92-140 481.15-140Zm0-60q88 0 158-48.5t102-126.5q-20 5-40 8t-40 3q-123 0-209.5-86.5T365.15-660q0-20 3-40t8-40q-78 32-126.5 102t-48.5 158q0 116 82 198t198 82Zm-10-270Z"/>
+        </svg>
+      `;
+    } else {
+      // Set light mode icon
+      themeIcon.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+          <path d="M480.03-371q45.43 0 77.2-31.8Q589-434.6 589-480.03q0-45.43-31.8-77.2Q525.4-589 479.97-589q-45.43 0-77.2 31.8Q371-525.4 371-479.97q0 45.43 31.8 77.2Q434.6-371 480.03-371Zm-.03 91q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM205.5-434.5h-171v-91h171v91Zm720 0h-171v-91h171v91Zm-491-320v-171h91v171h-91Zm0 720v-171h91v171h-91ZM255.76-641.87 147.35-746.52l64.41-67.13 104.13 107.17-60.13 64.61Zm492.48 495.52L643.11-254.52 704-317.65l108.65 104.17-64.41 67.13ZM642.35-704l104.17-108.65 67.13 64.41-107.17 104.13L642.35-704Zm-496 492.24 108.17-105.13L317.65-256 213.48-147.35l-67.13-64.41ZM480-480Z"/>
+        </svg>
+      `;
+    }
+  }
 </script>
 </body>
 </html>

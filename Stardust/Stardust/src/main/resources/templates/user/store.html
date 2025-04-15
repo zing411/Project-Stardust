@@ -225,8 +225,36 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" th:href="@{/css/style.css}" />
     <script th:src="@{/js/darkmode.js}" defer></script>
+    <style>
+        /* Starfield Background */
+        #starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            background: var(--base-color);
+        }
+
+        /* Optional: Adjust game card appearance in dark mode */
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .darkmode .card {
+            background-color: var(--base-variant);
+            color: var(--text-color);
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+    </style>
 </head>
 <body>
+<!-- Starfield Background Canvas -->
+<canvas id="starfield"></canvas>
+
 <header th:include="@{/fragments/header.html}"></header>
 
 <main class="container mt-4">
@@ -255,17 +283,6 @@
                     </div>
 
                     <!-- 💬 Review List Preview -->
-                    <!-- ⭐ Fixed Average Rating -->
-                    <div th:with="avgRating=${reviewService.getAverageRating(game.title)}">
-                        <span>Rating:</span>
-                        <span th:each="star : ${#numbers.sequence(1, 5)}"
-                              th:text="${star <= avgRating} ? '★' : '☆'"
-                              style="color: gold; font-size: 1.2em; margin-right: 2px;">
-    </span>
-                        <span th:text="|(${reviewService.getReviewsByGame(game.title).size()})|"></span>
-                    </div>
-
-                    <!-- 💬 Real Reviews from DB -->
                     <div class="mt-3">
                         <strong>Recent Reviews:</strong>
                         <ul style="max-height: 120px; overflow-y: auto; padding-left: 1rem;">
@@ -302,7 +319,6 @@
                     <sec:authorize access="!isAuthenticated()">
                         <p class="text-muted mt-2"><em>Please <a th:href="@{/login}">log in</a> to submit a review.</em></p>
                     </sec:authorize>
-
                 </div>
             </div>
         </div>
@@ -388,6 +404,56 @@
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+<!-- Starfield Animation Script -->
+<script>
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    for (let i = 0; i < 120; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 1.5,
+            speed: Math.random() * 0.5 + 0.2
+        });
+    }
+
+    function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = 'white';
+        stars.forEach(star => {
+            ctx.beginPath();
+            ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+            ctx.fill();
+        });
+    }
+
+    function updateStars() {
+        stars.forEach(star => {
+            star.y += star.speed;
+            if (star.y > canvas.height) {
+                star.y = 0;
+                star.x = Math.random() * canvas.width;
+            }
+        });
+    }
+
+    function animate() {
+        drawStars();
+        updateStars();
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+</script>
 </body>
 </html>
-

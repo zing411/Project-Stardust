@@ -319,7 +319,7 @@
                                 <label>Your Review:</label>
                                 <textarea name="comment" class="form-control form-control-sm" rows="2" placeholder="Write your review..." required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-sm btn-primary">Submit Review</button>
+                            <button type="submit" class="btn btn-sm btn-dark">Submit Review</button>
                         </form>
                     </sec:authorize>
                     <sec:authorize access="!isAuthenticated()">
@@ -332,9 +332,9 @@
 
     <!-- Pagination -->
     <div class="d-flex justify-content-between mt-4">
-        <a th:if="${currentPage > 0}" class="btn btn-primary"
+        <a th:if="${currentPage > 0}" class="btn btn-dark"
            th:href="@{/user/stardust/store(page=${currentPage - 1}, search=${search})}">Previous</a>
-        <a th:if="${currentPage < totalPages - 1}" class="btn btn-primary"
+        <a th:if="${currentPage < totalPages - 1}" class="btn btn-dark"
            th:href="@{/user/stardust/store(page=${currentPage + 1}, search=${search})}">Next</a>
     </div>
 

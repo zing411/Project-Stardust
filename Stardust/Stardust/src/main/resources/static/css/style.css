@@ -289,7 +289,7 @@ main.container {
 
 /* Ensure the text box adapts in dark mode */
 .darkmode .text-box {
-    background-color: var(--base-variant); 
+    background-color: var(--base-variant);
     color: var(--text-color);
 }
 
